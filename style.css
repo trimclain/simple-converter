@@ -36,7 +36,7 @@ body {
     margin: 1rem auto 1rem auto;
     border: 1px solid black;
     height: 35rem;
-    width: 30rem;
+    width: 25rem;
     background-color: var(--form_background);
     border-radius: var(--rad_big) var(--rad_big) var(--rad_big) var(--rad_big); /* makes corners round*/
 }
