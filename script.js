@@ -40,7 +40,7 @@ function main() {
                 this.value === ""
                     ? ""
                     : Math.round(
-                          (parseFloat(far.value, 10) * 5) / 9 - 32 * 10000
+                          ((parseFloat(far.value, 10) - 32)* 5) / 9 * 10000
                       ) / 10000;
             break;
         case cel.id:
@@ -48,7 +48,7 @@ function main() {
                 this.value === ""
                     ? ""
                     : Math.round(
-                          (parseFloat(cel.value, 10) * 9) / 5 + 32 * 10000
+                          ((parseFloat(cel.value, 10) * 9) / 5 + 32) * 10000
                       ) / 10000;
             break;
     }
