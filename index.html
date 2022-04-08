@@ -1,106 +1,60 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
-        <title>Simple Converter</title>
-    </head>
-    <body>
-        <div id="main">
-            <h1>Simple Converter</h1>
-            <table>
-                <tr>
-                    <td>
-                        <h4>Distance</h4>
-                    </td>
-                    <td>
-                        <input
-                            id="distance-miles"
-                            type="number"
-                            placeholder="0.0"
-                            min="0"
-                        />
-                    </td>
-                    <td>
-                        <p>mi</p>
-                    </td>
-                    <td>
-                        <input
-                            id="distance-km"
-                            type="number"
-                            placeholder="0.0"
-                            min="0"
-                        />
-                    </td>
-                    <td>
-                        <p>km</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Weight</h4>
-                    </td>
-                    <td>
-                        <input
-                            id="weight-lbs"
-                            type="number"
-                            placeholder="0.0"
-                            min="0"
-                        />
-                    </td>
-                    <td>
-                        <p>lbs</p>
-                    </td>
-                    <td>
-                        <input
-                            id="weight-kg"
-                            type="number"
-                            placeholder="0.0"
-                            min="0"
-                        />
-                    </td>
-                    <td>
-                        <p>kg</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Temperature</h4>
-                    </td>
-                    <td>
-                        <input id="temp-far" type="number" placeholder="0.0" />
-                    </td>
-                    <td>
-                        <p>°F</p>
-                    </td>
-                    <td>
-                        <input id="temp-cel" type="number" placeholder="0.0" />
-                    </td>
-                    <td>
-                        <p>°C</p>
-                    </td>
-                </tr>
-                <!-- <tr>
-                <td>
-                    <h4>Height</h4>
-                </td>
-                <td>
-                    <input id="height-ft" type="number" placeholder="0.0" min="0"/>
-                </td>
-                <td>
-                    <p>ft</p>
-                </td>
-                <td>
-                    <input id="height-cm" type="number" placeholder="0.0" min="0"/>
-                </td>
-                <td>
-                    <p>cm</p>
-                </td>
-            </tr> -->
-            </table>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Simple Converter</title>
+</head>
+
+<body>
+    <div id="main">
+        <h1>Simple Converter</h1>
+        <div id="row">
+            <div class="column">
+                <h4>Distance</h4>
+                <h4>Weight</h4>
+                <h4>Temperature</h4>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <input id="distance-miles" type="number" placeholder="0.0" min="0" />
+                    <p>mi</p>
+                </div>
+                <div class="item">
+                    <input id="weight-lbs" type="number" placeholder="0.0" min="0" />
+                    <p>lbs</p>
+                </div>
+                <div class="item">
+                    <input id="temp-far" type="number" placeholder="0.0" />
+                    <p>°F</p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <input id="distance-km" type="number" placeholder="0.0" min="0" />
+                    <p>km</p>
+                </div>
+                <div class="item">
+                    <input id="weight-kg" type="number" placeholder="0.0" min="0" />
+                    <p>kg</p>
+                </div>
+                <div class="item">
+                    <input id="temp-cel" type="number" placeholder="0.0" />
+                    <p>°C</p>
+                </div>
+            </div>
         </div>
-        <script type="text/javascript" src="script.js"></script>
-    </body>
+        <!-- TODO: Add height converter -->
+        <!-- <h4>Height</h4> -->
+        <!-- <input id="height-ft" type="number" placeholder="0.0" min="0"/> -->
+        <!-- <p>ft</p> -->
+        <!-- <input id="height-cm" type="number" placeholder="0.0" min="0"/> -->
+        <!-- <p>cm</p> -->
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
 </html>

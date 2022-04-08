@@ -17,6 +17,7 @@ input[type="number"] {
     --form_background: rgb(241, 241, 241);
     --placeholder_color: rgb(95, 95, 95);
 }
+
 body {
     padding: 0;
     margin: 0;
@@ -28,6 +29,7 @@ body {
     justify-content: center; /* x-axis align */
     align-items: center; /* y-axis align */
 }
+
 #main {
     display: flex;
     justify-content: start;
@@ -36,10 +38,37 @@ body {
     margin: 1rem auto 1rem auto;
     border: 1px solid black;
     height: 35rem;
-    width: 25rem;
+    width: 30rem;
     background-color: var(--form_background);
     border-radius: var(--rad_big) var(--rad_big) var(--rad_big) var(--rad_big); /* makes corners round*/
 }
+
+#row {
+    /* border: 1px solid black; */
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.column {
+    /* border: 1px solid black; */
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
 h1 {
     color: white;
     background-color: rgb(11, 40, 49);
@@ -51,12 +80,18 @@ h1 {
     font-weight: lighter;
     text-align: center;
 }
-table {
-    width: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
+
+h4 {
+    padding: 0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
 }
+
 input {
     height: 30px;
     width: 80px;
+}
+
+p {
+    padding: 1%;
 }
