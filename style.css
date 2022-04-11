@@ -55,7 +55,7 @@ body {
 .column {
     /* border: 1px solid black; */
     display: flex;
-    width: 30%;
+    width: 35%;
     flex-direction: column;
     align-items: center;
 }
@@ -92,6 +92,14 @@ input {
     width: 80px;
 }
 
-p {
-    padding: 1%;
+select {
+    /* padding: 1%; */
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-left: 0;
+    margin-right: 0;
 }
+
+/* p { */
+/*     padding: 1%; */
+/* } */

@@ -20,37 +20,58 @@
             </div>
             <div class="column">
                 <div class="item">
-                    <input id="distance-miles" type="number" placeholder="0.0" min="0" />
-                    <!-- TODO: add select menu -->
-                    <!-- <select name="dists" id="dists"> -->
-                    <!--     <option value="mi">mi</option> -->
-                    <!--     <option value="km">km</option> -->
-                    <!--     <option value="m">m</option> -->
-                    <!--     <option value="cm">cm</option> -->
-                    <!--   </select> -->
-                    <p>mi</p>
+                    <input id="dist-input-left" type="number" placeholder="0.0" min="0" />
+                    <select name="dist-select-left" id="dist-select-left">
+                        <option value="mi">mi</option>
+                        <option value="km">km</option>
+                        <option value="m">m</option>
+                        <option value="cm">cm</option>
+                    </select>
                 </div>
                 <div class="item">
-                    <input id="weight-lbs" type="number" placeholder="0.0" min="0" />
-                    <p>lb</p>
+                    <input id="weight-input-left" type="number" placeholder="0.0" min="0" />
+                    <select name="weight-select-left" id="weight-select-left">
+                        <option value="lb">lb</option>
+                        <option value="kg">kg</option>
+                        <option value="g">g</option>
+                        <option value="mg">mg</option>
+                    </select>
                 </div>
                 <div class="item">
-                    <input id="temp-far" type="number" placeholder="0.0" />
-                    <p>°F</p>
+                    <input id="temp-input-left" type="number" placeholder="0.0" />
+                    <select name="temp-select-left" id="temp-select-left">
+                        <option value="°F">°F</option>
+                        <option value="°C">°C</option>
+                        <option value="°K">°K</option>
+                    </select>
                 </div>
             </div>
             <div class="column">
                 <div class="item">
-                    <input id="distance-km" type="number" placeholder="0.0" min="0" />
-                    <p>km</p>
+                    <input id="dist-input-right" type="number" placeholder="0.0" min="0" />
+                    <select name="dist-select-right" id="dist-select-right">
+                        <option value="km">km</option>
+                        <option value="mi">mi</option>
+                        <option value="m">m</option>
+                        <option value="cm">cm</option>
+                    </select>
                 </div>
                 <div class="item">
-                    <input id="weight-kg" type="number" placeholder="0.0" min="0" />
-                    <p>kg</p>
+                    <input id="weight-input-right" type="number" placeholder="0.0" min="0" />
+                    <select name="weight-select-right" id="weight-select-right">
+                        <option value="kg">kg</option>
+                        <option value="lb">lb</option>
+                        <option value="g">g</option>
+                        <option value="mg">mg</option>
+                    </select>
                 </div>
                 <div class="item">
-                    <input id="temp-cel" type="number" placeholder="0.0" />
-                    <p>°C</p>
+                    <input id="temp-input-right" type="number" placeholder="0.0" />
+                    <select name="temp-select-right" id="temp-select-right">
+                        <option value="°C">°C</option>
+                        <option value="°F">°F</option>
+                        <option value="°K">°K</option>
+                    </select>
                 </div>
             </div>
         </div>
