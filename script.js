@@ -18,7 +18,7 @@ const weight_selector_right = document.getElementById('weight-select-right');
 const temp_input_right = document.getElementById('temp-input-right');
 const temp_selector_right = document.getElementById('temp-select-right');
 
-const convertDistance = (from_dist, to_dist, input_value) => {
+function convertDistance(from_dist, to_dist, input_value) {
     // input_value is a string
     // miles
     if (from_dist === 'mi') {
@@ -93,9 +93,9 @@ const convertDistance = (from_dist, to_dist, input_value) => {
             return input_value;
         }
     }
-};
+}
 
-const convertWeight = (from_weight, to_weight, input_value) => {
+function convertWeight(from_weight, to_weight, input_value) {
     // pounds
     if (from_weight === 'lb') {
         if (to_weight === 'kg') {
@@ -173,9 +173,9 @@ const convertWeight = (from_weight, to_weight, input_value) => {
             return input_value;
         }
     }
-};
+}
 
-const convertTemperature = (from_temp, to_temp, input_value) => {
+function convertTemperature(from_temp, to_temp, input_value) {
     // Farenheit
     if (from_temp === '°F') {
         if (to_temp === '°C') {
@@ -186,7 +186,7 @@ const convertTemperature = (from_temp, to_temp, input_value) => {
             );
         } else if (to_temp === '°F') {
             return input_value;
-        } else if (to_temp === '°K') {
+        } else if (to_temp === 'K') {
             return (
                 Math.round(
                     ((parseFloat(input_value, 10) - 32) * 5) / 9 +
@@ -205,7 +205,7 @@ const convertTemperature = (from_temp, to_temp, input_value) => {
                     ((parseFloat(input_value, 10) * 9) / 5 + 32) * 10000
                 ) / 10000
             );
-        } else if (to_temp === '°K') {
+        } else if (to_temp === 'K') {
             return (
                 Math.round((parseFloat(input_value, 10) + 273.15) * 10000) /
                 10000
@@ -213,7 +213,7 @@ const convertTemperature = (from_temp, to_temp, input_value) => {
         }
     }
     // Kelvin
-    if (from_temp === '°K') {
+    if (from_temp === 'K') {
         if (to_temp === '°C') {
             return (
                 Math.round((parseFloat(input_value, 10) - 273.15) * 10000) /
@@ -226,13 +226,13 @@ const convertTemperature = (from_temp, to_temp, input_value) => {
                         10000
                 ) / 10000
             );
-        } else if (to_temp === '°K') {
+        } else if (to_temp === 'K') {
             return input_value;
         }
     }
-};
+}
 
-const convert = () => {
+function convert() {
     switch (this.id) {
         case distance_input_left.id:
             distance_input_right.value =
@@ -295,7 +295,7 @@ const convert = () => {
                       );
             break;
     }
-};
+}
 
 const inputs = [
     distance_input_left,
