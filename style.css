@@ -128,18 +128,27 @@ button:disabled {
     background-color: grey;
 }
 
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 450px) {
     h1 {
         font-size: 2.2rem;
+        height: 2.8rem;
     }
 }
-@media screen and (max-width: 330px) {
+@media screen and (max-width: 400px) {
     h1 {
-        font-size: 2rem;
+        font-size: 2.0rem;
+        height: 2.6rem;
+    }
+}
+@media screen and (max-width: 350px) {
+    h1 {
+        font-size: 1.7rem;
+        height: 2rem;
     }
 }
 @media screen and (max-width: 300px) {
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+        height: 1.7rem;
     }
 }
