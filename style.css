@@ -12,6 +12,7 @@ input[type="number"] {
 
 :root {
     box-sizing: border-box;
+    font-size: 16px;
     --rad: 2rem;
     --rad_big: 0.4rem;
     --form_background: rgb(241, 241, 241);
@@ -22,6 +23,7 @@ input[type="number"] {
 }
 
 body {
+    min-width: 280px;
     padding: 10px;
     margin: 0;
     font-size: 1.2rem;
