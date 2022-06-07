@@ -306,6 +306,7 @@ const inputs = [
     temp_input_right,
 ];
 inputs.map((unit) => unit.addEventListener('input', convert));
+inputs.map((unit) => unit.addEventListener('input', disableButton));
 
 // Styling
 const temp_tag = document.getElementById('temp-tag');
@@ -322,3 +323,32 @@ const changeTempValue = (x) => {
 const media_event = window.matchMedia('(max-width: 450px)');
 changeTempValue(media_event); // Call listener function at run time
 media_event.addEventListener('change', changeTempValue); // Attach listener function on state changes
+
+// Button
+button = document.createElement('button');
+button.type = 'reset';
+button.innerHTML = 'Clear All';
+document.getElementById('main').appendChild(button);
+
+const clearValues = () => {
+    for (let input of inputs) {
+        if (input.value) {
+            input.value = null;
+        }
+    }
+    button.disabled = true;
+};
+
+button.disabled = true;
+function disableButton() {
+    disable = true;
+    for (let input of inputs) {
+        if (input.value) {
+            disable = false;
+            break;
+        }
+    }
+    disable ? (button.disabled = true) : (button.disabled = false);
+}
+
+button.addEventListener('click', clearValues);

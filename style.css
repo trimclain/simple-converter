@@ -20,6 +20,7 @@ input[type="number"] {
     --h1_background_color: rgb(11, 40, 49);
     --gradient_start: #286961;
     --gradient_end: #94c290;
+    --button_color: #5e9578;
 }
 
 body {
@@ -102,8 +103,29 @@ select {
     margin-right: 0;
 }
 
-.select-selected {
-  background-color: red;
+/* .select-selected { */
+/*   background-color: red; */
+/* } */
+
+button {
+    justify-self: center;
+    align-self: center;
+    width: 30%;
+    height: 5%;
+    /* background-color: var(--button_color); */
+    background-color: var(--gradient_start);
+    color: white;
+    font-size: 1rem;
+    /* border: 1px solid black; */
+    border-radius: var(--rad) var(--rad) var(--rad) var(--rad);
+}
+
+button:hover {
+    background-color: var(--h1_background_color);
+}
+
+button:disabled {
+    background-color: grey;
 }
 
 @media screen and (max-width: 370px) {
