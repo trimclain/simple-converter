@@ -306,3 +306,19 @@ const inputs = [
     temp_input_right,
 ];
 inputs.map((unit) => unit.addEventListener('input', convert));
+
+// Styling
+const temp_tag = document.getElementById('temp-tag');
+const changeTempValue = (x) => {
+    if (x.matches) {
+        // If media query matches
+        temp_tag.innerHTML = 'Temp';
+    } else {
+        // If media query matches
+        temp_tag.innerHTML = 'Temperature';
+    }
+};
+
+const media_event = window.matchMedia('(max-width: 450px)');
+changeTempValue(media_event); // Call listener function at run time
+media_event.addEventListener('change', changeTempValue); // Attach listener function on state changes
