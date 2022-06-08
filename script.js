@@ -235,63 +235,69 @@ function convertTemperature(from_temp, to_temp, input_value) {
 function convert() {
     switch (this.id) {
         case distance_input_left.id:
+        case distance_selector_left.id:
             distance_input_right.value =
-                this.value === ''
+                distance_input_left.value === ''
                     ? ''
                     : convertDistance(
                           distance_selector_left.value,
                           distance_selector_right.value,
-                          this.value
+                          distance_input_left.value
                       );
             break;
         case distance_input_right.id:
+        case distance_selector_right.id:
             distance_input_left.value =
-                this.value === ''
+                distance_input_right.value === ''
                     ? ''
                     : convertDistance(
                           distance_selector_right.value,
                           distance_selector_left.value,
-                          this.value
+                          distance_input_right.value
                       );
             break;
         case weight_input_left.id:
+        case weight_selector_left.id:
             weight_input_right.value =
-                this.value === ''
+                weight_input_left.value === ''
                     ? ''
                     : convertWeight(
                           weight_selector_left.value,
                           weight_selector_right.value,
-                          this.value
+                          weight_input_left.value
                       );
             break;
         case weight_input_right.id:
+        case weight_selector_right.id:
             weight_input_left.value =
-                this.value === ''
+                weight_input_right.value === ''
                     ? ''
                     : convertWeight(
                           weight_selector_right.value,
                           weight_selector_left.value,
-                          this.value
+                          weight_input_right.value
                       );
             break;
         case temp_input_left.id:
+        case temp_selector_left.id:
             temp_input_right.value =
-                this.value === ''
+                temp_input_left.value === ''
                     ? ''
                     : convertTemperature(
                           temp_selector_left.value,
                           temp_selector_right.value,
-                          this.value
+                          temp_input_left.value
                       );
             break;
         case temp_input_right.id:
+        case temp_selector_right.id:
             temp_input_left.value =
-                this.value === ''
+                temp_input_right.value === ''
                     ? ''
                     : convertTemperature(
                           temp_selector_right.value,
                           temp_selector_left.value,
-                          this.value
+                          temp_input_right.value
                       );
             break;
     }
@@ -305,8 +311,22 @@ const inputs = [
     temp_input_left,
     temp_input_right,
 ];
-inputs.map((unit) => unit.addEventListener('input', convert));
-inputs.map((unit) => unit.addEventListener('input', disableButton));
+inputs.map((input) => input.addEventListener('input', convert));
+inputs.map((input) => input.addEventListener('input', disableButton));
+
+const selectors = [
+    distance_selector_left,
+    distance_selector_right,
+    weight_selector_left,
+    weight_selector_right,
+    temp_selector_left,
+    temp_selector_right,
+];
+selectors.map((selector) => selector.addEventListener('change', convert));
+
+function print() {
+    console.log(this.id + ' selector changed');
+}
 
 // Styling
 const temp_tag = document.getElementById('temp-tag');
