@@ -79,7 +79,8 @@ function convertDistance(from_dist, to_dist, input_value) {
     if (from_dist === 'cm') {
         if (to_dist === 'km') {
             return (
-                Math.round((parseFloat(input_value, 10) / 1000) * 10000) / 10000
+                Math.round((parseFloat(input_value, 10) / 100000) * 10000) /
+                10000
             );
         } else if (to_dist === 'mi') {
             return Math.round(
@@ -158,7 +159,10 @@ function convertWeight(from_weight, to_weight, input_value) {
     // miligram
     if (from_weight === 'mg') {
         if (to_weight === 'kg') {
-            return;
+            return (
+                Math.round((parseFloat(input_value, 10) / 1000000) * 10000) /
+                10000
+            );
         } else if (to_weight === 'lb') {
             return (
                 Math.round(
