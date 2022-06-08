@@ -330,6 +330,8 @@ function convert() {
     switch (this.id) {
         case distance_input_left.id:
         case distance_selector_left.id:
+        // feels more natural to have this here
+        case distance_selector_right.id:
             distance_input_right.value =
                 distance_input_left.value === ''
                     ? ''
@@ -340,7 +342,6 @@ function convert() {
                       );
             break;
         case distance_input_right.id:
-        case distance_selector_right.id:
             distance_input_left.value =
                 distance_input_right.value === ''
                     ? ''
@@ -352,6 +353,7 @@ function convert() {
             break;
         case weight_input_left.id:
         case weight_selector_left.id:
+        case weight_selector_right.id:
             weight_input_right.value =
                 weight_input_left.value === ''
                     ? ''
@@ -362,7 +364,6 @@ function convert() {
                       );
             break;
         case weight_input_right.id:
-        case weight_selector_right.id:
             weight_input_left.value =
                 weight_input_right.value === ''
                     ? ''
@@ -374,6 +375,7 @@ function convert() {
             break;
         case temp_input_left.id:
         case temp_selector_left.id:
+        case temp_selector_right.id:
             temp_input_right.value =
                 temp_input_left.value === ''
                     ? ''
@@ -384,7 +386,6 @@ function convert() {
                       );
             break;
         case temp_input_right.id:
-        case temp_selector_right.id:
             temp_input_left.value =
                 temp_input_right.value === ''
                     ? ''
