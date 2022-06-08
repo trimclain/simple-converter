@@ -34,7 +34,17 @@ function convertDistance(from_dist, to_dist, input_value) {
             );
         } else if (to_dist === 'cm') {
             return (
-                Math.round(parseFloat(input_value, 10) * 160900 * 10000) / 10000
+                Math.round(parseFloat(input_value, 10) * 160934.4 * 10000) /
+                10000
+            );
+        } else if (to_dist === 'mm') {
+            return (
+                Math.round(parseFloat(input_value, 10) * 1609344 * 10000) /
+                10000
+            );
+        } else if (to_dist === 'in') {
+            return (
+                Math.round(parseFloat(input_value, 10) * 63360 * 10000) / 10000
             );
         }
     }
@@ -55,6 +65,16 @@ function convertDistance(from_dist, to_dist, input_value) {
             return (
                 Math.round(parseFloat(input_value, 10) * 100000 * 10000) / 10000
             );
+        } else if (to_dist === 'mm') {
+            return (
+                Math.round(parseFloat(input_value, 10) * 1000000 * 10000) /
+                10000
+            );
+        } else if (to_dist === 'in') {
+            return (
+                Math.round(parseFloat(input_value, 10) * 39370.1 * 10000) /
+                10000
+            );
         }
     }
     // meter
@@ -72,6 +92,15 @@ function convertDistance(from_dist, to_dist, input_value) {
         } else if (to_dist === 'cm') {
             return (
                 Math.round(parseFloat(input_value, 10) * 100 * 10000) / 10000
+            );
+        } else if (to_dist === 'mm') {
+            return (
+                Math.round(parseFloat(input_value, 10) * 1000 * 10000) / 10000
+            );
+        } else if (to_dist === 'in') {
+            return (
+                Math.round(parseFloat(input_value, 10) * 39.3701 * 10000) /
+                10000
             );
         }
     }
@@ -91,6 +120,67 @@ function convertDistance(from_dist, to_dist, input_value) {
                 Math.round((parseFloat(input_value, 10) / 100) * 10000) / 10000
             );
         } else if (to_dist === 'cm') {
+            return input_value;
+        } else if (to_dist === 'mm') {
+            return Math.round(parseFloat(input_value, 10) * 10 * 10000) / 10000;
+        } else if (to_dist === 'in') {
+            return (
+                Math.round((parseFloat(input_value, 10) / 2.54) * 10000) / 10000
+            );
+        }
+    }
+    // milimeter
+    if (from_dist === 'mm') {
+        if (to_dist === 'km') {
+            return (
+                Math.round((parseFloat(input_value, 10) / 1000000) * 10000) /
+                10000
+            );
+        } else if (to_dist === 'mi') {
+            return Math.round(
+                ((parseFloat(input_value, 10) / 1609344) * 10000) / 10000
+            );
+        } else if (to_dist === 'm') {
+            return (
+                Math.round((parseFloat(input_value, 10) / 1000) * 10000) / 10000
+            );
+        } else if (to_dist === 'cm') {
+            return (
+                Math.round((parseFloat(input_value, 10) / 10) * 10000) / 10000
+            );
+        } else if (to_dist === 'mm') {
+            return input_value;
+        } else if (to_dist === 'in') {
+            return (
+                Math.round((parseFloat(input_value, 10) / 25.4) * 10000) / 10000
+            );
+        }
+    }
+    // inches
+    if (from_dist === 'in') {
+        if (to_dist === 'km') {
+            return (
+                Math.round((parseFloat(input_value, 10) / 39370.1) * 10000) /
+                10000
+            );
+        } else if (to_dist === 'mi') {
+            return Math.round(
+                ((parseFloat(input_value, 10) / 63360) * 10000) / 10000
+            );
+        } else if (to_dist === 'm') {
+            return (
+                Math.round((parseFloat(input_value, 39.37) / 1000) * 10000) /
+                10000
+            );
+        } else if (to_dist === 'cm') {
+            return (
+                Math.round(parseFloat(input_value, 10) * 2.54 * 10000) / 10000
+            );
+        } else if (to_dist === 'mm') {
+            return (
+                Math.round(parseFloat(input_value, 10) * 25.4 * 10000) / 10000
+            );
+        } else if (to_dist === 'in') {
             return input_value;
         }
     }
