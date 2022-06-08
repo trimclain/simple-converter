@@ -169,7 +169,7 @@ function convertDistance(from_dist, to_dist, input_value) {
             );
         } else if (to_dist === 'm') {
             return (
-                Math.round((parseFloat(input_value, 39.37) / 1000) * 10000) /
+                Math.round((parseFloat(input_value, 10) / 39.37) * 10000) /
                 10000
             );
         } else if (to_dist === 'cm') {
