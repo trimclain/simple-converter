@@ -164,8 +164,9 @@ function convertDistance(from_dist, to_dist, input_value) {
                 10000
             );
         } else if (to_dist === 'mi') {
-            return Math.round(
-                ((parseFloat(input_value, 10) / 63360) * 10000) / 10000
+            return (
+                Math.round(parseFloat(input_value, 10) * 0.000015783 * 10000) /
+                10000
             );
         } else if (to_dist === 'm') {
             return (
