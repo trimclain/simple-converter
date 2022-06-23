@@ -284,8 +284,8 @@ function convertTemperature(from_temp, to_temp, input_value) {
         } else if (to_temp === 'K') {
             return (
                 Math.round(
-                    ((parseFloat(input_value, 10) - 32) * 5) / 9 +
-                        273.15 * 10000
+                    (((parseFloat(input_value, 10) - 32) * 5) / 9 + 273.15) *
+                        10000
                 ) / 10000
             );
         }
