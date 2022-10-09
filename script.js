@@ -84,24 +84,35 @@ const weight_convert_table = {
     lblb: 1,
     lbg: 453.592,
     lbmg: 453592,
+    lboz: 16,
 
     // from kilograms
     kgkg: 1,
     kglb: 2.20462,
     kgg: 1000,
     kgmg: 1000000,
+    kgoz: 35.274,
 
     // from grams
     gkg: 1 / 1000,
     glb: 0.00220462,
     gg: 1,
     gmg: 1000,
+    goz: 1 / 28.34952,
 
     // from miligrams
     mgkg: 1 / 1000000,
     mglb: 0.00000220462,
     mgg: 1 / 1000,
     mgmg: 1,
+    mgoz: 1 / 28349.52,
+
+    // from ounces
+    ozkg: 1 / 35.274,
+    ozlb: 1 / 16,
+    ozg: 28.34952,
+    ozmg: 28349.52,
+    ozoz: 1,
 };
 
 const temperature_convert_table = {
