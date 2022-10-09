@@ -1,332 +1,213 @@
-// left column
-const distance_input_left = document.getElementById('dist-input-left');
-const distance_selector_left = document.getElementById('dist-select-left');
+const list_of_ids = [
+    'dist-input-left',
+    'dist-select-left',
+    'weight-input-left',
+    'weight-select-left',
+    'temp-input-left',
+    'temp-select-left',
+    'dist-input-right',
+    'dist-select-right',
+    'weight-input-right',
+    'weight-select-right',
+    'temp-input-right',
+    'temp-select-right',
+];
 
-const weight_input_left = document.getElementById('weight-input-left');
-const weight_selector_left = document.getElementById('weight-select-left');
+[
+    distance_input_left,
+    distance_selector_left,
+    weight_input_left,
+    weight_selector_left,
+    temp_input_left,
+    temp_selector_left,
+    distance_input_right,
+    distance_selector_right,
+    weight_input_right,
+    weight_selector_right,
+    temp_input_right,
+    temp_selector_right,
+] = list_of_ids.map((id) => document.getElementById(id));
 
-const temp_input_left = document.getElementById('temp-input-left');
-const temp_selector_left = document.getElementById('temp-select-left');
+const distance_convert_table = {
+    // from miles
+    mikm: 1.609,
+    mimi: 1,
+    mim: 1609,
+    micm: 160934.4,
+    mimm: 1609344,
+    miin: 63360,
 
-// rigth column
-const distance_input_right = document.getElementById('dist-input-right');
-const distance_selector_right = document.getElementById('dist-select-right');
+    // from kilometers
+    kmkm: 1,
+    kmmi: 1 / 1.609,
+    kmm: 1000,
+    kmcm: 100000,
+    kmmm: 1000000,
+    kmin: 39370.1,
 
-const weight_input_right = document.getElementById('weight-input-right');
-const weight_selector_right = document.getElementById('weight-select-right');
+    // from meters
+    mkm: 1 / 1000,
+    mmi: 1 / 1609,
+    mm: 1,
+    mcm: 100,
+    mmm: 1000,
+    min: 39.3701,
 
-const temp_input_right = document.getElementById('temp-input-right');
-const temp_selector_right = document.getElementById('temp-select-right');
+    // from centimeters
+    cmkm: 1 / 100000,
+    cmmi: 1 / 160934.4,
+    cmm: 1 / 100,
+    cmcm: 1,
+    cmmm: 10,
+    cmin: 1 / 2.54,
 
-function convertDistance(from_dist, to_dist, input_value) {
-    // input_value is a string
-    // miles
-    if (from_dist === 'mi') {
-        if (to_dist === 'km') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 1.609 * 10000) / 10000
-            );
-        } else if (to_dist === 'mi') {
-            return input_value;
-        } else if (to_dist === 'm') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 1609 * 10000) / 10000
-            );
-        } else if (to_dist === 'cm') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 160934.4 * 10000) /
-                10000
-            );
-        } else if (to_dist === 'mm') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 1609344 * 10000) /
-                10000
-            );
-        } else if (to_dist === 'in') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 63360 * 10000) / 10000
-            );
-        }
+    // from milimeters
+    mmkm: 1 / 1000000,
+    mmmi: 1 / 1609344,
+    mmm: 1 / 1000,
+    mmcm: 10,
+    mmmm: 1,
+    mmin: 1 / 25.4,
+
+    // from inches
+    inkm: 1 / 39370.1,
+    inmi: 0.000015783,
+    inm: 1 / 39.37,
+    incm: 2.54,
+    inmm: 25.4,
+    inin: 1,
+};
+
+const weight_convert_table = {
+    // from pounds
+    lbkg: 0.453592,
+    lblb: 1,
+    lbg: 453.592,
+    lbmg: 453592,
+
+    // from kilograms
+    kgkg: 1,
+    kglb: 2.20462,
+    kgg: 1000,
+    kgmg: 1000000,
+
+    // from grams
+    gkg: 1 / 1000,
+    glb: 0.00220462,
+    gg: 1,
+    gmg: 1000,
+
+    // from miligrams
+    mgkg: 1 / 1000000,
+    mglb: 0.00000220462,
+    mgg: 1 / 1000,
+    mgmg: 1,
+};
+
+const temperature_convert_table = {
+    // from Farenheit
+    FC: [-32, 5 / 9], // +[0] * [1]
+    FF: 1,
+    FK: [-32, 5 / 9, 273.15], // +[0] * [1] + [2]
+
+    // from Celcius
+    CC: 1,
+    CF: [9 / 5, 32], // * [0] + 1
+    CK: [273.15, 1], // +[0] * [1]
+
+    // from Kelvin
+    KC: [-273.15, 1], // +[0] * [1]
+    KF: [-273.15, 9 / 5], // +[0] * [1]
+    KK: 1,
+};
+
+class Converter {
+    constructor(from_unit, to_unit, unit_value) {
+        this.from_unit = from_unit;
+        this.to_unit = to_unit;
+        this.unit_value = unit_value;
     }
-    // kilometer
-    if (from_dist === 'km') {
-        if (to_dist === 'km') {
-            return input_value;
-        } else if (to_dist === 'mi') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 1.609) * 10000) /
-                10000
-            );
-        } else if (to_dist === 'm') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 1000 * 10000) / 10000
-            );
-        } else if (to_dist === 'cm') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 100000 * 10000) / 10000
-            );
-        } else if (to_dist === 'mm') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 1000000 * 10000) /
-                10000
-            );
-        } else if (to_dist === 'in') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 39370.1 * 10000) /
-                10000
-            );
-        }
+
+    convert() {
+        return (
+            Math.round(
+                parseFloat(this.unit_value, 10) * this.get_convert_arg() * 10000
+            ) / 10000
+        );
     }
-    // meter
-    if (from_dist === 'm') {
-        if (to_dist === 'km') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 1000) * 10000) / 10000
-            );
-        } else if (to_dist === 'mi') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 1609) * 10000) / 10000
-            );
-        } else if (to_dist === 'm') {
-            return input_value;
-        } else if (to_dist === 'cm') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 100 * 10000) / 10000
-            );
-        } else if (to_dist === 'mm') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 1000 * 10000) / 10000
-            );
-        } else if (to_dist === 'in') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 39.3701 * 10000) /
-                10000
-            );
-        }
-    }
-    // centimeter
-    if (from_dist === 'cm') {
-        if (to_dist === 'km') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 100000) * 10000) /
-                10000
-            );
-        } else if (to_dist === 'mi') {
-            return Math.round(
-                ((parseFloat(input_value, 10) / 160900) * 10000) / 10000
-            );
-        } else if (to_dist === 'm') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 100) * 10000) / 10000
-            );
-        } else if (to_dist === 'cm') {
-            return input_value;
-        } else if (to_dist === 'mm') {
-            return Math.round(parseFloat(input_value, 10) * 10 * 10000) / 10000;
-        } else if (to_dist === 'in') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 2.54) * 10000) / 10000
-            );
-        }
-    }
-    // milimeter
-    if (from_dist === 'mm') {
-        if (to_dist === 'km') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 1000000) * 10000) /
-                10000
-            );
-        } else if (to_dist === 'mi') {
-            return Math.round(
-                ((parseFloat(input_value, 10) / 1609344) * 10000) / 10000
-            );
-        } else if (to_dist === 'm') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 1000) * 10000) / 10000
-            );
-        } else if (to_dist === 'cm') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 10) * 10000) / 10000
-            );
-        } else if (to_dist === 'mm') {
-            return input_value;
-        } else if (to_dist === 'in') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 25.4) * 10000) / 10000
-            );
-        }
-    }
-    // inches
-    if (from_dist === 'in') {
-        if (to_dist === 'km') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 39370.1) * 10000) /
-                10000
-            );
-        } else if (to_dist === 'mi') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 0.000015783 * 10000) /
-                10000
-            );
-        } else if (to_dist === 'm') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 39.37) * 10000) /
-                10000
-            );
-        } else if (to_dist === 'cm') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 2.54 * 10000) / 10000
-            );
-        } else if (to_dist === 'mm') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 25.4 * 10000) / 10000
-            );
-        } else if (to_dist === 'in') {
-            return input_value;
-        }
+
+    get_convert_arg() {
+        return 1;
     }
 }
 
-function convertWeight(from_weight, to_weight, input_value) {
-    // pounds
-    if (from_weight === 'lb') {
-        if (to_weight === 'kg') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 0.453592 * 10000) /
-                10000
-            );
-        } else if (to_weight === 'lb') {
-            return input_value;
-        } else if (to_weight === 'g') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 453.592 * 10000) /
-                10000
-            );
-        } else if (to_weight === 'mg') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 453592 * 10000) / 10000
-            );
-        }
+class Distance extends Converter {
+    constructor(from_unit, to_unit, unit_value) {
+        super(from_unit, to_unit, unit_value);
     }
-    // kilogram
-    if (from_weight === 'kg') {
-        if (to_weight === 'kg') {
-            return input_value;
-        } else if (to_weight === 'lb') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 2.20462 * 10000) /
-                10000
-            );
-        } else if (to_weight === 'g') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 1000 * 10000) / 10000
-            );
-        } else if (to_weight === 'mg') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 1000000 * 10000) /
-                10000
-            );
-        }
-    }
-    // gram
-    if (from_weight === 'g') {
-        if (to_weight === 'kg') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 1000) * 10000) / 10000
-            );
-        } else if (to_weight === 'lb') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 0.00220462 * 10000) /
-                10000
-            );
-        } else if (to_weight === 'g') {
-            return input_value;
-        } else if (to_weight === 'mg') {
-            return (
-                Math.round(parseFloat(input_value, 10) * 1000 * 10000) / 10000
-            );
-        }
-    }
-    // miligram
-    if (from_weight === 'mg') {
-        if (to_weight === 'kg') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 1000000) * 10000) /
-                10000
-            );
-        } else if (to_weight === 'lb') {
-            return (
-                Math.round(
-                    parseFloat(input_value, 10) * 0.00000220462 * 10000
-                ) / 10000
-            );
-        } else if (to_weight === 'g') {
-            return (
-                Math.round((parseFloat(input_value, 10) / 1000) * 10000) / 10000
-            );
-        } else if (to_weight === 'mg') {
-            return input_value;
-        }
+
+    get_convert_arg() {
+        return distance_convert_table[this.from_unit + this.to_unit];
     }
 }
 
-function convertTemperature(from_temp, to_temp, input_value) {
-    // Farenheit
-    if (from_temp === '°F') {
-        if (to_temp === '°C') {
+// const d = new Distance('mi', 'km', 10);
+// console.log(d.convert());
+
+class Weight extends Converter {
+    constructor(from_unit, to_unit, unit_value) {
+        super(from_unit, to_unit, unit_value);
+    }
+
+    get_convert_arg() {
+        return weight_convert_table[this.from_unit + this.to_unit];
+    }
+}
+
+// const d = new Weight('lb', 'kg', 300);
+// console.log(d.convert());
+
+class Temperature extends Converter {
+    constructor(from_unit, to_unit, unit_value) {
+        super(from_unit, to_unit, unit_value);
+    }
+
+    get_convert_arg() {
+        return temperature_convert_table[this.from_unit + this.to_unit];
+    }
+
+    convert() {
+        const arg = this.get_convert_arg();
+        if (arg == 1) {
+            return this.unit_value;
+        } else if (arg.length == 3) {
             return (
                 Math.round(
-                    (((parseFloat(input_value, 10) - 32) * 5) / 9) * 10000
-                ) / 10000
-            );
-        } else if (to_temp === '°F') {
-            return input_value;
-        } else if (to_temp === 'K') {
-            return (
-                Math.round(
-                    (((parseFloat(input_value, 10) - 32) * 5) / 9 + 273.15) *
+                    ((parseFloat(this.unit_value, 10) + arg[0]) * arg[1] +
+                        arg[2]) *
                         10000
                 ) / 10000
             );
-        }
-    }
-    // Celcius
-    if (from_temp === '°C') {
-        if (to_temp === '°C') {
-            return input_value;
-        } else if (to_temp === '°F') {
+        } else if (this.from_unit + this.to_unit === 'CF') {
             return (
                 Math.round(
-                    ((parseFloat(input_value, 10) * 9) / 5 + 32) * 10000
+                    (parseFloat(this.unit_value, 10) * arg[0] + arg[1]) * 10000
                 ) / 10000
             );
-        } else if (to_temp === 'K') {
-            return (
-                Math.round((parseFloat(input_value, 10) + 273.15) * 10000) /
-                10000
-            );
-        }
-    }
-    // Kelvin
-    if (from_temp === 'K') {
-        if (to_temp === '°C') {
-            return (
-                Math.round((parseFloat(input_value, 10) - 273.15) * 10000) /
-                10000
-            );
-        } else if (to_temp === '°F') {
+        } else {
             return (
                 Math.round(
-                    (((parseFloat(input_value, 10) - 273.15) * 9) / 5 + 32) *
-                        10000
+                    (parseFloat(this.unit_value, 10) + arg[0]) * arg[1] * 10000
                 ) / 10000
             );
-        } else if (to_temp === 'K') {
-            return input_value;
         }
     }
 }
 
+// const d = new Temperature('F', 'K', 69);
+// console.log(d.convert());
+
+/* Convert values*/
 function convert() {
     switch (this.id) {
         case distance_input_left.id:
@@ -336,21 +217,21 @@ function convert() {
             distance_input_right.value =
                 distance_input_left.value === ''
                     ? ''
-                    : convertDistance(
+                    : new Distance(
                           distance_selector_left.value,
                           distance_selector_right.value,
                           distance_input_left.value
-                      );
+                      ).convert();
             break;
         case distance_input_right.id:
             distance_input_left.value =
                 distance_input_right.value === ''
                     ? ''
-                    : convertDistance(
+                    : new Distance(
                           distance_selector_right.value,
                           distance_selector_left.value,
                           distance_input_right.value
-                      );
+                      ).convert();
             break;
         case weight_input_left.id:
         case weight_selector_left.id:
@@ -358,21 +239,21 @@ function convert() {
             weight_input_right.value =
                 weight_input_left.value === ''
                     ? ''
-                    : convertWeight(
+                    : new Weight(
                           weight_selector_left.value,
                           weight_selector_right.value,
                           weight_input_left.value
-                      );
+                      ).convert();
             break;
         case weight_input_right.id:
             weight_input_left.value =
                 weight_input_right.value === ''
                     ? ''
-                    : convertWeight(
+                    : new Weight(
                           weight_selector_right.value,
                           weight_selector_left.value,
                           weight_input_right.value
-                      );
+                      ).convert();
             break;
         case temp_input_left.id:
         case temp_selector_left.id:
@@ -380,21 +261,21 @@ function convert() {
             temp_input_right.value =
                 temp_input_left.value === ''
                     ? ''
-                    : convertTemperature(
+                    : new Temperature(
                           temp_selector_left.value,
                           temp_selector_right.value,
                           temp_input_left.value
-                      );
+                      ).convert();
             break;
         case temp_input_right.id:
             temp_input_left.value =
                 temp_input_right.value === ''
                     ? ''
-                    : convertTemperature(
+                    : new Temperature(
                           temp_selector_right.value,
                           temp_selector_left.value,
                           temp_input_right.value
-                      );
+                      ).convert();
             break;
     }
 }
@@ -420,32 +301,22 @@ const selectors = [
 ];
 selectors.map((selector) => selector.addEventListener('change', convert));
 
-function print() {
-    console.log(this.id + ' selector changed');
-}
-
-// Styling
+// Media Styling
 const temp_tag = document.getElementById('temp-tag');
 const changeTempValue = (x) => {
+    // If media query matches
     if (x.matches) {
-        // If media query matches
         temp_tag.innerHTML = 'Temp';
     } else {
-        // If media query matches
         temp_tag.innerHTML = 'Temperature';
     }
 };
-
 const media_event = window.matchMedia('(max-width: 450px)');
 changeTempValue(media_event); // Call listener function at run time
 media_event.addEventListener('change', changeTempValue); // Attach listener function on state changes
 
 // Button
-button = document.createElement('button');
-button.type = 'reset';
-button.innerHTML = 'Clear All';
-document.getElementById('main').appendChild(button);
-
+button = document.getElementById('clear-button');
 const clearValues = () => {
     for (let input of inputs) {
         if (input.value) {
@@ -455,7 +326,6 @@ const clearValues = () => {
     button.disabled = true;
 };
 
-button.disabled = true;
 function disableButton() {
     disable = true;
     for (let input of inputs) {
