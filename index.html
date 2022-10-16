@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="en-US">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Simple Converter</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Simple Converter</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-C1THWDZGP8"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C1THWDZGP8"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+            gtag('config', 'G-C1THWDZGP8');
+        </script>
+    </head>
 
-        gtag('config', 'G-C1THWDZGP8');
-    </script>
-</head>
-
-<body>
-    <div id="page">
-        <h1>Simple Converter</h1>
+    <body>
+        <div id="page">
+            <h1>Simple Converter</h1>
             <div class="container">
                 <h4 id="dist-tag">Distance</h4>
                 <div id="item-dl">
-                    <input id="dist-input-left" class="item" type="number" placeholder="0.0" min="0" />
-                    <select name="dist-select-left" id="dist-select-left" class="item">
+                    <input
+                        id="dist-input-left"
+                        class="item"
+                        type="number"
+                        placeholder="0.0"
+                        min="0"
+                    />
+                    <select
+                        name="dist-select-left"
+                        id="dist-select-left"
+                        class="item"
+                    >
                         <option value="mi">mi</option>
                         <option value="km">km</option>
                         <option value="m">m</option>
@@ -39,8 +51,18 @@
                     </select>
                 </div>
                 <div id="item-dr">
-                    <input id="dist-input-right" class="item" type="number" placeholder="0.0" min="0" />
-                    <select name="dist-select-right" id="dist-select-right" class="item">
+                    <input
+                        id="dist-input-right"
+                        class="item"
+                        type="number"
+                        placeholder="0.0"
+                        min="0"
+                    />
+                    <select
+                        name="dist-select-right"
+                        id="dist-select-right"
+                        class="item"
+                    >
                         <option value="km">km</option>
                         <option value="mi">mi</option>
                         <option value="m">m</option>
@@ -52,8 +74,18 @@
 
                 <h4 id="weight-tag">Weight</h4>
                 <div id="item-wl">
-                    <input id="weight-input-left" class="item" type="number" placeholder="0.0" min="0" />
-                    <select name="weight-select-left" id="weight-select-left" class="item">
+                    <input
+                        id="weight-input-left"
+                        class="item"
+                        type="number"
+                        placeholder="0.0"
+                        min="0"
+                    />
+                    <select
+                        name="weight-select-left"
+                        id="weight-select-left"
+                        class="item"
+                    >
                         <option value="lb">lb</option>
                         <option value="kg">kg</option>
                         <option value="g">g</option>
@@ -62,8 +94,18 @@
                     </select>
                 </div>
                 <div id="item-wr">
-                    <input id="weight-input-right" class="item" type="number" placeholder="0.0" min="0" />
-                    <select name="weight-select-right" id="weight-select-right" class="item">
+                    <input
+                        id="weight-input-right"
+                        class="item"
+                        type="number"
+                        placeholder="0.0"
+                        min="0"
+                    />
+                    <select
+                        name="weight-select-right"
+                        id="weight-select-right"
+                        class="item"
+                    >
                         <option value="kg">kg</option>
                         <option value="lb">lb</option>
                         <option value="g">g</option>
@@ -74,16 +116,34 @@
 
                 <h4 id="temp-tag">Temperature</h4>
                 <div id="item-tl">
-                    <input id="temp-input-left" class="item" type="number" placeholder="0.0" />
-                    <select name="temp-select-left" id="temp-select-left" class="item">
+                    <input
+                        id="temp-input-left"
+                        class="item"
+                        type="number"
+                        placeholder="0.0"
+                    />
+                    <select
+                        name="temp-select-left"
+                        id="temp-select-left"
+                        class="item"
+                    >
                         <option value="F">°F</option>
                         <option value="C">°C</option>
                         <option value="K">K</option>
                     </select>
                 </div>
                 <div id="item-tr">
-                    <input id="temp-input-right" class="item" type="number" placeholder="0.0" />
-                    <select name="temp-select-right" id="temp-select-right" class="item">
+                    <input
+                        id="temp-input-right"
+                        class="item"
+                        type="number"
+                        placeholder="0.0"
+                    />
+                    <select
+                        name="temp-select-right"
+                        id="temp-select-right"
+                        class="item"
+                    >
                         <option value="C">°C</option>
                         <option value="F">°F</option>
                         <option value="K">K</option>
@@ -93,25 +153,37 @@
                 <h4 id="height-tag">Height</h4>
                 <div id="item-hl">
                     <div id="item-hll">
-                        <input id="height-ft" type="number" placeholder="0.0" min="0"/>
+                        <input
+                            id="height-ft"
+                            type="number"
+                            placeholder="0"
+                            min="0"
+                        />
                         <p id="ft-tag">ft</p>
                     </div>
                     <div id="item-hlr">
-                        <input id="height-in" type="number" placeholder="0.0" min="0"/>
+                        <input
+                            id="height-in"
+                            type="number"
+                            placeholder="0"
+                            min="0"
+                        />
                         <p id="in-tag">in</p>
                     </div>
                 </div>
                 <div id="item-hr">
-                    <input id="height-cm" type="number" placeholder="0.0" min="0"/>
+                    <input
+                        id="height-cm"
+                        type="number"
+                        placeholder="0"
+                        min="0"
+                    />
                     <p id="cm-tag">cm</p>
                 </div>
-
             </div>
 
-        <button id="clear-button" type="reset" disabled>Clear All</button>
-
-    </div>
-    <script type="text/javascript" src="script.js"></script>
-</body>
-
+            <button id="clear-button" type="reset" disabled>Clear All</button>
+        </div>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
 </html>

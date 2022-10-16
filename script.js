@@ -11,6 +11,9 @@ const list_of_ids = [
     'weight-select-right',
     'temp-input-right',
     'temp-select-right',
+    'height-ft',
+    'height-in',
+    'height-cm',
 ];
 
 [
@@ -26,6 +29,9 @@ const list_of_ids = [
     weight_selector_right,
     temp_input_right,
     temp_selector_right,
+    height_ft,
+    height_in,
+    height_cm,
 ] = list_of_ids.map((id) => document.getElementById(id));
 
 const distance_convert_table = {
@@ -218,7 +224,21 @@ class Temperature extends Converter {
 // const d = new Temperature('F', 'K', 69);
 // console.log(d.convert());
 
-/* Convert values*/
+// Convert Height
+function us_to_normal(feet, inches) {
+    const l_part = Math.round(parseFloat(feet, 10) * 30.48 * 10000) / 10000;
+    const r_part = Math.round(parseFloat(inches, 10) * 2.54 * 10000) / 10000;
+    return Math.floor(l_part + r_part);
+}
+
+function normal_to_us(cm) {
+    const length = Math.round((parseFloat(cm, 10) / 2.54) * 10000) / 10000;
+    const feet = Math.floor(length / 12);
+    const inches = Math.floor(length - feet * 12);
+    return [feet, inches];
+}
+
+/* Convert values */
 function convert() {
     switch (this.id) {
         case distance_input_left.id:
@@ -244,6 +264,7 @@ function convert() {
                           distance_input_right.value
                       ).convert();
             break;
+
         case weight_input_left.id:
         case weight_selector_left.id:
         case weight_selector_right.id:
@@ -266,6 +287,7 @@ function convert() {
                           weight_input_right.value
                       ).convert();
             break;
+
         case temp_input_left.id:
         case temp_selector_left.id:
         case temp_selector_right.id:
@@ -288,6 +310,24 @@ function convert() {
                           temp_input_right.value
                       ).convert();
             break;
+
+        case height_ft.id:
+        case height_in.id:
+            height_cm.value =
+                height_ft.value === '' || height_in.value === ''
+                    ? ''
+                    : us_to_normal(height_ft.value, height_in.value);
+            break;
+        case height_cm.id:
+            if (height_cm.value === '') {
+                height_ft.value = '';
+                height_in.value = '';
+                break;
+            }
+            const [feet, inches] = normal_to_us(height_cm.value);
+            height_ft.value = feet;
+            height_in.value = inches;
+            break;
     }
 }
 
@@ -298,6 +338,9 @@ const inputs = [
     weight_input_right,
     temp_input_left,
     temp_input_right,
+    height_ft,
+    height_in,
+    height_cm,
 ];
 inputs.map((input) => input.addEventListener('input', convert));
 inputs.map((input) => input.addEventListener('input', disableButton));
