@@ -6,7 +6,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type="number"] {
+input[type='number'] {
     -moz-appearance: textfield;
 }
 
@@ -28,14 +28,18 @@ body {
     padding: 10px;
     margin: 0;
     font-size: 1.2rem;
-    background-image: linear-gradient(to right, var(--gradient_start), var(--gradient_end));
-    font-family: "Times New Roman", Times, serif;
+    background-image: linear-gradient(
+        to right,
+        var(--gradient_start),
+        var(--gradient_end)
+    );
+    font-family: 'Times New Roman', Times, serif;
     display: flex;
     justify-content: center; /* x-axis align */
     align-items: center; /* y-axis align */
 }
 
-#main {
+#page {
     display: flex;
     justify-content: start;
     flex-direction: column;
@@ -46,30 +50,139 @@ body {
     height: 35rem;
     width: 30rem;
     background-color: var(--form_background);
-    border-radius: var(--rad_big) var(--rad_big) var(--rad_big) var(--rad_big); /* makes corners round*/
+    border-radius: var(--rad_big) var(--rad_big) var(--rad_big) var(--rad_big);
 }
 
-#row {
-    width: 100%;
+.container {
+    display: grid;
+    grid-template-areas:
+        "dist-tag item-dl item-dr"
+        "weight-tag item-wl item-wr"
+        "temp-tag item-tl item-tr"
+        "height-tag item-hl item-hr";
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0px 10px;
+    /* padding: 10px; */
+    text-align: center;
+}
+
+#dist-tag {
+    grid-area: dist-tag;
+}
+
+#weight-tag {
+    grid-area: weight-tag;
+}
+
+#temp-tag {
+    grid-area: temp-tag;
+}
+
+#height-tag {
+    grid-area: height-tag;
+}
+
+#item-dl {
+    grid-area: item-dl;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid black; */
+}
+
+#item-dr {
+    grid-area: item-dr;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid black; */
+}
+
+#item-wl {
+    grid-area: item-wl;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid black; */
+}
+
+#item-wr {
+    grid-area: item-wr;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid black; */
+}
+
+#item-tl {
+    grid-area: item-tl;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid black; */
+}
+
+#item-tr {
+    grid-area: item-tr;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid black; */
+}
+
+#item-hl {
+    grid-area: item-hl;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid black; */
+}
+
+#item-hll {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    /* border: 1px solid black; */
 }
 
-.column {
+#item-hlr {
     display: flex;
-    width: 35%;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid black; */
+}
+
+#ft-tag, #in-tag {
+    padding-left: 5px;
+}
+
+#cm-tag {
+    padding-right: 15px;
+}
+
+#item-hr {
+    grid-area: item-hr;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border: 1px solid black; */
 }
 
 .item {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
+    margin: 10px;
+    padding: 0 0px;
+    text-align: center;
 }
 
 h1 {
@@ -96,12 +209,19 @@ input {
     width: 15vw;
 }
 
-select {
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-    margin-left: 0;
-    margin-right: 0;
+#height-ft, #height-in {
+    height: 30px;
+    max-width: 40px;
+    width: 15vw;
 }
+
+
+/* select { */
+/*     margin-top: 1.5em; */
+/*     margin-bottom: 1.5em; */
+/*     margin-left: 0; */
+/*     margin-right: 0; */
+/* } */
 
 /* .select-selected { */
 /*   background-color: red; */
@@ -116,8 +236,8 @@ button {
     background-color: var(--gradient_start);
     color: white;
     font-size: 1rem;
-    /* border: 1px solid black; */
     border-radius: var(--rad) var(--rad) var(--rad) var(--rad);
+    margin-top: 10px;
 }
 
 button:hover {
@@ -133,11 +253,17 @@ button:disabled {
         font-size: 2.2rem;
         height: 2.8rem;
     }
+    #page {
+        width: 23.8rem;
+    }
 }
 @media screen and (max-width: 400px) {
     h1 {
-        font-size: 2.0rem;
+        font-size: 2rem;
         height: 2.6rem;
+    }
+    #page {
+        width: 23rem;
     }
 }
 @media screen and (max-width: 350px) {
@@ -147,8 +273,12 @@ button:disabled {
     }
 }
 @media screen and (max-width: 300px) {
+    /* TODO: Galaxy Fold has 280 width */
     h1 {
         font-size: 1.5rem;
         height: 1.7rem;
+    }
+    #page {
+        width: 20rem;
     }
 }
