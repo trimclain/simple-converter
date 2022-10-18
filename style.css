@@ -14,24 +14,16 @@ input[type="number"] {
     box-sizing: border-box;
     font-size: 16px;
     --rad: 2rem;
-    --rad_big: 0.4rem;
-    --form_background: rgb(241, 241, 241);
-    --placeholder_color: rgb(95, 95, 95);
+    --rad_big: 1.5rem;
+    --form_background: #94c290;
     --h1_background_color: rgb(11, 40, 49);
-    --gradient_start: #286961;
-    --gradient_end: #94c290;
-    --button_color: #5e9578;
 }
 
 body {
     padding: 10px;
     margin: 0;
     font-size: 1.2rem;
-    background-image: linear-gradient(
-        to right,
-        var(--gradient_start),
-        var(--gradient_end)
-    );
+    background: var(--form_background);
     font-family: "Times New Roman", Times, serif;
     display: flex;
     justify-content: center; /* x-axis align */
@@ -45,11 +37,10 @@ body {
     align-items: center;
     padding: 10px;
     margin: 1rem auto 1rem auto;
-    border: 1px solid black;
     height: 35rem;
     width: 30rem;
-    background-color: var(--form_background);
-    border-radius: var(--rad_big) var(--rad_big) var(--rad_big) var(--rad_big);
+    border-radius: var(--rad_big);
+    box-shadow: 20px 20px 60px #7ea57a, -20px -20px 60px #aadfa6;
 }
 
 .container {
@@ -216,36 +207,25 @@ input {
     width: 15vw;
 }
 
-/* select { */
-/*     margin-top: 1.5em; */
-/*     margin-bottom: 1.5em; */
-/*     margin-left: 0; */
-/*     margin-right: 0; */
-/* } */
-
-/* .select-selected { */
-/*   background-color: red; */
-/* } */
-
 button {
     justify-self: center;
     align-self: center;
     width: 30%;
     height: 5%;
-    /* background-color: var(--button_color); */
-    background-color: var(--gradient_start);
     color: white;
     font-size: 1rem;
-    border-radius: var(--rad) var(--rad) var(--rad) var(--rad);
+    border: none;
+    border-radius: var(--rad);
     margin-top: 10px;
+    box-shadow: inset 20px 20px 50px #4a6148, inset -20px -20px 50px #deffd8;
 }
 
 button:hover {
-    background-color: var(--h1_background_color);
+    box-shadow: inset 20px 20px 50px #3b4e3a, inset -20px -20px 50px #edffe6;
 }
 
 button:disabled {
-    background-color: grey;
+    box-shadow: inset 20px 20px 50px #787878, inset -20px -20px 50px #f8f8f8;
 }
 
 @media screen and (max-width: 450px) {
