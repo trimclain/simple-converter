@@ -1,19 +1,19 @@
 const list_of_ids = [
-    'dist-input-left',
-    'dist-select-left',
-    'weight-input-left',
-    'weight-select-left',
-    'temp-input-left',
-    'temp-select-left',
-    'dist-input-right',
-    'dist-select-right',
-    'weight-input-right',
-    'weight-select-right',
-    'temp-input-right',
-    'temp-select-right',
-    'height-ft',
-    'height-in',
-    'height-cm',
+    "dist-input-left",
+    "dist-select-left",
+    "weight-input-left",
+    "weight-select-left",
+    "temp-input-left",
+    "temp-select-left",
+    "dist-input-right",
+    "dist-select-right",
+    "weight-input-right",
+    "weight-select-right",
+    "temp-input-right",
+    "temp-select-right",
+    "height-ft",
+    "height-in",
+    "height-cm",
 ];
 
 [
@@ -205,7 +205,7 @@ class Temperature extends Converter {
                         10000
                 ) / 10000
             );
-        } else if (this.from_unit + this.to_unit === 'CF') {
+        } else if (this.from_unit + this.to_unit === "CF") {
             return (
                 Math.round(
                     (parseFloat(this.unit_value, 10) * arg[0] + arg[1]) * 10000
@@ -246,8 +246,8 @@ function convert() {
         // feels more natural to have this here
         case distance_selector_right.id:
             distance_input_right.value =
-                distance_input_left.value === ''
-                    ? ''
+                distance_input_left.value === ""
+                    ? ""
                     : new Distance(
                           distance_selector_left.value,
                           distance_selector_right.value,
@@ -256,8 +256,8 @@ function convert() {
             break;
         case distance_input_right.id:
             distance_input_left.value =
-                distance_input_right.value === ''
-                    ? ''
+                distance_input_right.value === ""
+                    ? ""
                     : new Distance(
                           distance_selector_right.value,
                           distance_selector_left.value,
@@ -269,8 +269,8 @@ function convert() {
         case weight_selector_left.id:
         case weight_selector_right.id:
             weight_input_right.value =
-                weight_input_left.value === ''
-                    ? ''
+                weight_input_left.value === ""
+                    ? ""
                     : new Weight(
                           weight_selector_left.value,
                           weight_selector_right.value,
@@ -279,8 +279,8 @@ function convert() {
             break;
         case weight_input_right.id:
             weight_input_left.value =
-                weight_input_right.value === ''
-                    ? ''
+                weight_input_right.value === ""
+                    ? ""
                     : new Weight(
                           weight_selector_right.value,
                           weight_selector_left.value,
@@ -292,8 +292,8 @@ function convert() {
         case temp_selector_left.id:
         case temp_selector_right.id:
             temp_input_right.value =
-                temp_input_left.value === ''
-                    ? ''
+                temp_input_left.value === ""
+                    ? ""
                     : new Temperature(
                           temp_selector_left.value,
                           temp_selector_right.value,
@@ -302,8 +302,8 @@ function convert() {
             break;
         case temp_input_right.id:
             temp_input_left.value =
-                temp_input_right.value === ''
-                    ? ''
+                temp_input_right.value === ""
+                    ? ""
                     : new Temperature(
                           temp_selector_right.value,
                           temp_selector_left.value,
@@ -314,14 +314,14 @@ function convert() {
         case height_ft.id:
         case height_in.id:
             height_cm.value =
-                height_ft.value === '' || height_in.value === ''
-                    ? ''
+                height_ft.value === "" || height_in.value === ""
+                    ? ""
                     : us_to_normal(height_ft.value, height_in.value);
             break;
         case height_cm.id:
-            if (height_cm.value === '') {
-                height_ft.value = '';
-                height_in.value = '';
+            if (height_cm.value === "") {
+                height_ft.value = "";
+                height_in.value = "";
                 break;
             }
             const [feet, inches] = normal_to_us(height_cm.value);
@@ -342,8 +342,8 @@ const inputs = [
     height_in,
     height_cm,
 ];
-inputs.map((input) => input.addEventListener('input', convert));
-inputs.map((input) => input.addEventListener('input', disableButton));
+inputs.map((input) => input.addEventListener("input", convert));
+inputs.map((input) => input.addEventListener("input", disableButton));
 
 const selectors = [
     distance_selector_left,
@@ -353,24 +353,96 @@ const selectors = [
     temp_selector_left,
     temp_selector_right,
 ];
-selectors.map((selector) => selector.addEventListener('change', convert));
+selectors.map((selector) => selector.addEventListener("change", convert));
 
+///////////////////////////////////////////////////////////////////////////////
 // Media Styling
-const temp_tag = document.getElementById('temp-tag');
-const changeTempValue = (x) => {
+///////////////////////////////////////////////////////////////////////////////
+const media_event = window.matchMedia("(max-width: 450px)");
+const temp_tag = document.getElementById("temp-tag");
+const dist_tag = document.getElementById("dist-tag");
+const weight_tag = document.getElementById("weight-tag");
+const height_tag = document.getElementById("height-tag");
+
+// Change Temperature tag for width less than 450px
+const changeTempValue450 = (x) => {
     // If media query matches
     if (x.matches) {
-        temp_tag.innerHTML = 'Temp';
+        temp_tag.innerHTML = "Temp";
     } else {
-        temp_tag.innerHTML = 'Temperature';
+        temp_tag.innerHTML = "Temperature";
     }
 };
-const media_event = window.matchMedia('(max-width: 450px)');
-changeTempValue(media_event); // Call listener function at run time
-media_event.addEventListener('change', changeTempValue); // Attach listener function on state changes
+changeTempValue450(media_event); // Call listener function at run time
+media_event.addEventListener("change", changeTempValue450); // Attach listener function on state changes
 
+// Change Distance tag for width less than 450px
+const changeDistValue450 = (x) => {
+    // If media query matches
+    if (x.matches) {
+        dist_tag.innerHTML = "Dist";
+    } else {
+        dist_tag.innerHTML = "Distance";
+    }
+};
+changeDistValue450(media_event); // Call listener function at run time
+media_event.addEventListener("change", changeDistValue450); // Attach listener function on state changes
+
+///////////////////////////////////////////////////////////////////////////////
+const media_event2 = window.matchMedia("(max-width: 350px)");
+
+// Change Temperature tag for width less than 350px
+const changeTempValue350 = (x) => {
+    // If media query matches
+    if (x.matches) {
+        temp_tag.innerHTML = "T";
+    } else {
+        temp_tag.innerHTML = "Temp";
+    }
+};
+changeTempValue350(media_event2); // Call listener function at run time
+media_event2.addEventListener("change", changeTempValue350); // Attach listener function on state changes
+
+// Change Distance tag for width less than 350px
+const changeDistValue350 = (x) => {
+    // If media query matches
+    if (x.matches) {
+        dist_tag.innerHTML = "D";
+    } else {
+        dist_tag.innerHTML = "Dist";
+    }
+};
+changeDistValue350(media_event2); // Call listener function at run time
+media_event2.addEventListener("change", changeDistValue350); // Attach listener function on state changes
+
+// Change Weight tag for width less than 350px
+const changeWeightValue350 = (x) => {
+    // If media query matches
+    if (x.matches) {
+        weight_tag.innerHTML = "W";
+    } else {
+        weight_tag.innerHTML = "Weight";
+    }
+};
+changeWeightValue350(media_event2); // Call listener function at run time
+media_event2.addEventListener("change", changeWeightValue350); // Attach listener function on state changes
+
+// Change Height tag for width less than 350px
+const changeHeightValue350 = (x) => {
+    // If media query matches
+    if (x.matches) {
+        height_tag.innerHTML = "H";
+    } else {
+        height_tag.innerHTML = "Height";
+    }
+};
+changeHeightValue350(media_event2); // Call listener function at run time
+media_event2.addEventListener("change", changeHeightValue350); // Attach listener function on state changes
+
+///////////////////////////////////////////////////////////////////////////////
 // Button
-button = document.getElementById('clear-button');
+///////////////////////////////////////////////////////////////////////////////
+button = document.getElementById("clear-button");
 const clearValues = () => {
     for (let input of inputs) {
         if (input.value) {
@@ -391,4 +463,4 @@ function disableButton() {
     disable ? (button.disabled = true) : (button.disabled = false);
 }
 
-button.addEventListener('click', clearValues);
+button.addEventListener("click", clearValues);

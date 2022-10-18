@@ -6,7 +6,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type='number'] {
+input[type="number"] {
     -moz-appearance: textfield;
 }
 
@@ -24,7 +24,6 @@ input[type='number'] {
 }
 
 body {
-    min-width: 280px;
     padding: 10px;
     margin: 0;
     font-size: 1.2rem;
@@ -33,7 +32,7 @@ body {
         var(--gradient_start),
         var(--gradient_end)
     );
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
     display: flex;
     justify-content: center; /* x-axis align */
     align-items: center; /* y-axis align */
@@ -162,7 +161,8 @@ body {
     /* border: 1px solid black; */
 }
 
-#ft-tag, #in-tag {
+#ft-tag,
+#in-tag {
     padding-left: 5px;
 }
 
@@ -209,12 +209,12 @@ input {
     width: 15vw;
 }
 
-#height-ft, #height-in {
+#height-ft,
+#height-in {
     height: 30px;
     max-width: 40px;
     width: 15vw;
 }
-
 
 /* select { */
 /*     margin-top: 1.5em; */
@@ -262,23 +262,67 @@ button:disabled {
         font-size: 2rem;
         height: 2.6rem;
     }
+    h4 {
+        padding-left: 0.5rem;
+    }
     #page {
-        width: 23rem;
+        width: 22rem;
     }
 }
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 375px) {
     h1 {
         font-size: 1.7rem;
         height: 2rem;
     }
+    #page {
+        width: 21rem;
+    }
+    #ft-tag,
+    #in-tag {
+        padding-left: 1pt;
+    }
+    #cm-tag {
+        padding-left: 1pt;
+    }
+    .item {
+        margin: 7px;
+    }
 }
-@media screen and (max-width: 300px) {
-    /* TODO: Galaxy Fold has 280 width */
+@media screen and (max-width: 330px) {
     h1 {
         font-size: 1.5rem;
         height: 1.7rem;
     }
+    h4 {
+        font-size: 1rem;
+        margin-block-start: 1.3em;
+        margin-block-end: 1em;
+    }
+    #ft-tag,
+    #in-tag {
+        padding-left: 0;
+    }
+    #cm-tag {
+        padding-left: 0;
+    }
+    .container {
+        gap: 0 0;
+    }
+    .item {
+        margin: 5px;
+    }
     #page {
-        width: 20rem;
+        padding: 0;
+        width: 17rem;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .item {
+        margin: 2px;
+    }
+    #page {
+        padding: 0;
+        width: 16rem;
     }
 }
