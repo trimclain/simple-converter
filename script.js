@@ -364,18 +364,6 @@ const dist_tag = document.getElementById("dist-tag");
 const weight_tag = document.getElementById("weight-tag");
 const height_tag = document.getElementById("height-tag");
 
-// Change Temperature tag for width less than 450px
-const changeTempValue450 = (x) => {
-    // If media query matches
-    if (x.matches) {
-        temp_tag.innerHTML = "Temp";
-    } else {
-        temp_tag.innerHTML = "Temperature";
-    }
-};
-changeTempValue450(media_event); // Call listener function at run time
-media_event.addEventListener("change", changeTempValue450); // Attach listener function on state changes
-
 // Change Distance tag for width less than 450px
 const changeDistValue450 = (x) => {
     // If media query matches
@@ -385,23 +373,21 @@ const changeDistValue450 = (x) => {
         dist_tag.innerHTML = "Distance";
     }
 };
-changeDistValue450(media_event); // Call listener function at run time
 media_event.addEventListener("change", changeDistValue450); // Attach listener function on state changes
+
+// Change Temperature tag for width less than 450px
+const changeTempValue450 = (x) => {
+    // If media query matches
+    if (x.matches) {
+        temp_tag.innerHTML = "Temp";
+    } else {
+        temp_tag.innerHTML = "Temperature";
+    }
+};
+media_event.addEventListener("change", changeTempValue450); // Attach listener function on state changes
 
 ///////////////////////////////////////////////////////////////////////////////
 const media_event2 = window.matchMedia("(max-width: 350px)");
-
-// Change Temperature tag for width less than 350px
-const changeTempValue350 = (x) => {
-    // If media query matches
-    if (x.matches) {
-        temp_tag.innerHTML = "T";
-    } else {
-        temp_tag.innerHTML = "Temp";
-    }
-};
-changeTempValue350(media_event2); // Call listener function at run time
-media_event2.addEventListener("change", changeTempValue350); // Attach listener function on state changes
 
 // Change Distance tag for width less than 350px
 const changeDistValue350 = (x) => {
@@ -412,7 +398,6 @@ const changeDistValue350 = (x) => {
         dist_tag.innerHTML = "Dist";
     }
 };
-changeDistValue350(media_event2); // Call listener function at run time
 media_event2.addEventListener("change", changeDistValue350); // Attach listener function on state changes
 
 // Change Weight tag for width less than 350px
@@ -427,6 +412,17 @@ const changeWeightValue350 = (x) => {
 changeWeightValue350(media_event2); // Call listener function at run time
 media_event2.addEventListener("change", changeWeightValue350); // Attach listener function on state changes
 
+// Change Temperature tag for width less than 350px
+const changeTempValue350 = (x) => {
+    // If media query matches
+    if (x.matches) {
+        temp_tag.innerHTML = "T";
+    } else {
+        temp_tag.innerHTML = "Temp";
+    }
+};
+media_event2.addEventListener("change", changeTempValue350); // Attach listener function on state changes
+
 // Change Height tag for width less than 350px
 const changeHeightValue350 = (x) => {
     // If media query matches
@@ -438,6 +434,30 @@ const changeHeightValue350 = (x) => {
 };
 changeHeightValue350(media_event2); // Call listener function at run time
 media_event2.addEventListener("change", changeHeightValue350); // Attach listener function on state changes
+
+///////////////////////////////////////////////////////////////////////////////
+// Call listener functions on startup
+const initTempValue = (x, y) => {
+    if (x.matches) {
+        temp_tag.innerHTML = "T";
+    } else if (y.matches) {
+        temp_tag.innerHTML = "Temp";
+    } else {
+        temp_tag.innerHTML = "Temperature";
+    }
+};
+initTempValue(media_event2, media_event);
+
+const initDistValue = (x, y) => {
+    if (x.matches) {
+        dist_tag.innerHTML = "D";
+    } else if (y.matches) {
+        dist_tag.innerHTML = "Dist";
+    } else {
+        dist_tag.innerHTML = "Distance";
+    }
+};
+initDistValue(media_event2, media_event);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Button
