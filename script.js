@@ -148,7 +148,9 @@ class Converter {
     convert() {
         return (
             Math.round(
-                parseFloat(this.unit_value, 10) * this.get_convert_arg() * 10000
+                parseFloat(this.unit_value, 10) *
+                    this.get_convert_arg() *
+                    10000,
             ) / 10000
         );
     }
@@ -168,9 +170,6 @@ class Distance extends Converter {
     }
 }
 
-// const d = new Distance('mi', 'km', 10);
-// console.log(d.convert());
-
 class Weight extends Converter {
     constructor(from_unit, to_unit, unit_value) {
         super(from_unit, to_unit, unit_value);
@@ -180,9 +179,6 @@ class Weight extends Converter {
         return weight_convert_table[this.from_unit + this.to_unit];
     }
 }
-
-// const d = new Weight('lb', 'kg', 300);
-// console.log(d.convert());
 
 class Temperature extends Converter {
     constructor(from_unit, to_unit, unit_value) {
@@ -202,27 +198,24 @@ class Temperature extends Converter {
                 Math.round(
                     ((parseFloat(this.unit_value, 10) + arg[0]) * arg[1] +
                         arg[2]) *
-                        10000
+                        10000,
                 ) / 10000
             );
         } else if (this.from_unit + this.to_unit === "CF") {
             return (
                 Math.round(
-                    (parseFloat(this.unit_value, 10) * arg[0] + arg[1]) * 10000
+                    (parseFloat(this.unit_value, 10) * arg[0] + arg[1]) * 10000,
                 ) / 10000
             );
         } else {
             return (
                 Math.round(
-                    (parseFloat(this.unit_value, 10) + arg[0]) * arg[1] * 10000
+                    (parseFloat(this.unit_value, 10) + arg[0]) * arg[1] * 10000,
                 ) / 10000
             );
         }
     }
 }
-
-// const d = new Temperature('F', 'K', 69);
-// console.log(d.convert());
 
 // Convert Height
 function us_to_normal(feet, inches) {
@@ -243,7 +236,6 @@ function convert() {
     switch (this.id) {
         case distance_input_left.id:
         case distance_selector_left.id:
-        // feels more natural to have this here
         case distance_selector_right.id:
             distance_input_right.value =
                 distance_input_left.value === ""
@@ -251,7 +243,7 @@ function convert() {
                     : new Distance(
                           distance_selector_left.value,
                           distance_selector_right.value,
-                          distance_input_left.value
+                          distance_input_left.value,
                       ).convert();
             break;
         case distance_input_right.id:
@@ -261,7 +253,7 @@ function convert() {
                     : new Distance(
                           distance_selector_right.value,
                           distance_selector_left.value,
-                          distance_input_right.value
+                          distance_input_right.value,
                       ).convert();
             break;
 
@@ -274,7 +266,7 @@ function convert() {
                     : new Weight(
                           weight_selector_left.value,
                           weight_selector_right.value,
-                          weight_input_left.value
+                          weight_input_left.value,
                       ).convert();
             break;
         case weight_input_right.id:
@@ -284,7 +276,7 @@ function convert() {
                     : new Weight(
                           weight_selector_right.value,
                           weight_selector_left.value,
-                          weight_input_right.value
+                          weight_input_right.value,
                       ).convert();
             break;
 
@@ -297,7 +289,7 @@ function convert() {
                     : new Temperature(
                           temp_selector_left.value,
                           temp_selector_right.value,
-                          temp_input_left.value
+                          temp_input_left.value,
                       ).convert();
             break;
         case temp_input_right.id:
@@ -307,7 +299,7 @@ function convert() {
                     : new Temperature(
                           temp_selector_right.value,
                           temp_selector_left.value,
-                          temp_input_right.value
+                          temp_input_right.value,
                       ).convert();
             break;
 
