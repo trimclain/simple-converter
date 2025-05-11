@@ -306,9 +306,12 @@ function convert() {
         case height_ft.id:
         case height_in.id:
             height_cm.value =
-                height_ft.value === "" || height_in.value === ""
+                height_ft.value === "" && height_in.value === ""
                     ? ""
-                    : us_to_normal(height_ft.value, height_in.value);
+                    : us_to_normal(
+                          height_ft.value === "" ? 0 : height_ft.value,
+                          height_in.value === "" ? 0 : height_in.value,
+                      );
             break;
         case height_cm.id:
             if (height_cm.value === "") {
